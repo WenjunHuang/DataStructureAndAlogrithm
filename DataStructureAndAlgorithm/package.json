@@ -1,0 +1,9 @@
+{
+  "name": "data-structure-and-algorithm",
+  "version": "0.0.0",
+  "description": "DataStructureAndAlgorithm",
+  "main": "app.js",
+  "author": {
+    "name": "rick"
+  }
+}
