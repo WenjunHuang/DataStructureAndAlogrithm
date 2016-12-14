@@ -93,3 +93,28 @@ export function FindUsingLevelOrder<T>(root: BinaryTreeNode<T>, value: T, compar
     // not found
     return null;
 }
+
+export function FindSizeRecursive<T>(root: BinaryTreeNode<T>) {
+    if (!root)
+        return 0;
+
+    return FindSizeRecursive(root.left) + FindSizeRecursive(root.right) + 1;
+}
+
+export function FindSizeIterative<T>(root: BinaryTreeNode<T>) {
+    if (!root)
+        return 0;
+
+    let result = 0;
+    let queue: Array<BinaryTreeNode<T>> = [];
+    queue.push(root);
+    while (queue.length > 0) {
+        let node = queue.splice(0, 1)[0];
+        result += 1;
+
+        if (node.left) queue.push(node.left);
+        if (node.right) queue.push(node.right);
+    }
+    return result;
+}
+

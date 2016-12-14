@@ -1,5 +1,5 @@
 ﻿import { BinaryTreeNode } from "../src/BinaryTreeNode";
-import { FindMaxRecursive, FindMaxIterative, FindMaxUsingLevelOrder, FindRecursive, FindUsingLevelOrder } from "../src/BinaryTreeAlgorithm";
+import { FindMaxRecursive, FindMaxIterative, FindMaxUsingLevelOrder, FindRecursive, FindUsingLevelOrder, FindSizeRecursive, FindSizeIterative } from "../src/BinaryTreeAlgorithm";
 import * as tsUnit from "../node_modules/tsunit.external/tsUnit";
 let root = new BinaryTreeNode<number>(1,
     new BinaryTreeNode<number>(2,
@@ -56,6 +56,16 @@ export class BinaryTreeAlgorithmTest extends tsUnit.TestClass {
     findUsingLevelOrder_NotFound_Success() {
         let result = FindUsingLevelOrder(root, 100, this.comparator);
         this.areIdentical(null, result);
+    }
+
+    findSizeRecursive_Success() {
+        let result = FindSizeRecursive(root);
+        this.areIdentical(11, result);
+    }
+
+    findSizeIterative_Success() {
+        let result = FindSizeIterative(root);
+        this.areIdentical(11, result);
     }
 }
 
