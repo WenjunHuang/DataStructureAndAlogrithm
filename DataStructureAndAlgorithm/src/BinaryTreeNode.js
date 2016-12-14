@@ -1,28 +1,35 @@
 "use strict";
-class BinaryTreeNode {
-    constructor(data, left, right) {
+var BinaryTreeNode = (function () {
+    function BinaryTreeNode(data, left, right) {
         this.data = data;
         this.left = left;
         this.right = right;
     }
-    insertLeft(newNode) {
+    BinaryTreeNode.prototype.insertLeft = function (newNode) {
         if (!this.left)
             this.left = new BinaryTreeNode(newNode);
         else {
-            const temp = new BinaryTreeNode(newNode, this.left);
+            var temp = new BinaryTreeNode(newNode, this.left);
             this.left = temp;
         }
-    }
-    insertRight(newNode) {
+    };
+    BinaryTreeNode.prototype.insertRight = function (newNode) {
         if (!this.right)
             this.right = new BinaryTreeNode(newNode);
         else {
-            const temp = new BinaryTreeNode(newNode, null, this.right);
+            var temp = new BinaryTreeNode(newNode, null, this.right);
             this.right = temp;
         }
-    }
-}
+    };
+    return BinaryTreeNode;
+}());
 exports.BinaryTreeNode = BinaryTreeNode;
+Array.prototype["enqueue"] = function (data) {
+    this.push(data);
+};
+Array.prototype["dequeue"] = function () {
+    return this.splice(0, 1)[0];
+};
 /**
  * Tree preorder traversal using recursive
  * @param root
@@ -44,15 +51,15 @@ exports.PreorderTraversalRecursive = PreorderTraversalRecursive;
 function PreorderTraversalIterative(root, traverser) {
     if (!root)
         return;
-    const stack = [];
+    var stack = [];
     stack.push(root);
     while (stack.length > 0) {
-        const top = stack.pop();
-        traverser(top.data);
-        if (top.right)
-            stack.push(top.right);
-        if (top.left)
-            stack.push(top.left);
+        var top_1 = stack.pop();
+        traverser(top_1.data);
+        if (top_1.right)
+            stack.push(top_1.right);
+        if (top_1.left)
+            stack.push(top_1.left);
     }
 }
 exports.PreorderTraversalIterative = PreorderTraversalIterative;
@@ -67,16 +74,16 @@ exports.InorderTraversalRecursive = InorderTraversalRecursive;
 function InorderTraversalIterative(root, traverser) {
     if (!root)
         return;
-    const stack = [];
-    const state = {
+    var state = {
         location: 1,
         node: root
     };
+    var stack = [];
     stack.push(state);
     while (stack.length > 0) {
-        const top = stack.pop();
-        root = top.node;
-        switch (top.location) {
+        var top_2 = stack.pop();
+        root = top_2.node;
+        switch (top_2.location) {
             case 1:
                 stack.push({ location: 2, node: root });
                 if (root.left)
@@ -102,16 +109,16 @@ function PostorderTraversalRecursive(root, traverser) {
 }
 exports.PostorderTraversalRecursive = PostorderTraversalRecursive;
 function PostorderTraversalIterative(root, traverser) {
-    const stack = [];
-    const item = {
+    var item = {
         location: 1,
         root: root
     };
+    var stack = [];
     stack.push(item);
     while (stack.length > 0) {
-        const top = stack.pop();
-        root = top.root;
-        switch (top.location) {
+        var top_3 = stack.pop();
+        root = top_3.root;
+        switch (top_3.location) {
             case 1:
                 stack.push({ location: 2, root: root });
                 if (root.right)
@@ -131,36 +138,36 @@ exports.PostorderTraversalIterative = PostorderTraversalIterative;
 function LevelOrderTraversal(root, traverser) {
     if (!root)
         return;
-    const queue = [];
-    queue.push(root);
+    var queue = [];
+    queue.enqueue(root);
     while (queue.length > 0) {
-        const node = queue.splice(0, 1)[0];
+        var node = queue.dequeue();
         traverser(node.data);
         if (node.left)
-            queue.push(node.left);
+            queue.enqueue(node.left);
         if (node.right)
-            queue.push(node.right);
+            queue.enqueue(node.right);
     }
 }
 exports.LevelOrderTraversal = LevelOrderTraversal;
 function InsertUsingLevelOrder(root, data) {
-    let newNode = new BinaryTreeNode(data);
+    var newNode = new BinaryTreeNode(data);
     if (!root) {
         root = newNode;
         return root;
     }
-    let queue = [];
-    queue.push(root);
+    var queue = [];
+    queue.enqueue(root);
     while (queue.length > 0) {
-        let node = queue.splice(0, 1)[0];
+        var node = queue.dequeue();
         if (node.left)
-            queue.push(node.left);
+            queue.enqueue(node.left);
         else {
             node.left = newNode;
             return root;
         }
         if (node.right)
-            queue.push(node.right);
+            queue.enqueue(node.right);
         else {
             node.right = newNode;
             return root;
@@ -171,19 +178,19 @@ exports.InsertUsingLevelOrder = InsertUsingLevelOrder;
 function LevelOrderTraversalInReverse(root, traverser) {
     if (!root)
         return;
-    let stack = [];
-    let queue = [];
-    queue.push(root);
+    var stack = [];
+    var queue = [];
+    queue.enqueue(root);
     while (queue.length > 0) {
-        let node = queue.splice(0, 1)[0];
+        var node = queue.dequeue();
         stack.push(node);
         if (node.right)
-            queue.push(node.right);
+            queue.enqueue(node.right);
         if (node.left)
-            queue.push(node.left);
+            queue.enqueue(node.left);
     }
     while (stack.length > 0) {
-        let node = stack.pop();
+        var node = stack.pop();
         traverser(node.data);
     }
 }

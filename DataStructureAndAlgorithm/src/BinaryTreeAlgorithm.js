@@ -1,13 +1,13 @@
 "use strict";
 function FindMaxRecursive(root, comparator) {
-    let max = root.data;
+    var max = root.data;
     if (root.left) {
-        let left = FindMaxRecursive(root.left, comparator);
+        var left = FindMaxRecursive(root.left, comparator);
         if (comparator(left, max) > 0)
             max = left;
     }
     if (root.right) {
-        let right = FindMaxRecursive(root.right, comparator);
+        var right = FindMaxRecursive(root.right, comparator);
         if (comparator(right, max) > 0)
             max = right;
     }
@@ -15,17 +15,17 @@ function FindMaxRecursive(root, comparator) {
 }
 exports.FindMaxRecursive = FindMaxRecursive;
 function FindMaxIterative(root, comparator) {
-    let max = root.data;
-    const stack = [];
-    const item = {
+    var max = root.data;
+    var stack = [];
+    var item = {
         location: 1,
         root: root
     };
     stack.push(item);
     while (stack.length > 0) {
-        const top = stack.pop();
-        root = top.root;
-        switch (top.location) {
+        var top_1 = stack.pop();
+        root = top_1.root;
+        switch (top_1.location) {
             case 1:
                 stack.push({ location: 2, root: root });
                 if (root.left) {
@@ -52,11 +52,11 @@ function FindMaxIterative(root, comparator) {
 }
 exports.FindMaxIterative = FindMaxIterative;
 function FindMaxUsingLevelOrder(root, comparator) {
-    let queue = [];
+    var queue = [];
     queue.push(root);
-    let max = root.data;
+    var max = root.data;
     while (queue.length > 0) {
-        let item = queue.splice(0, 1)[0];
+        var item = queue.splice(0, 1)[0];
         if (comparator(item.data, max) > 0)
             max = item.data;
         if (item.left)
@@ -72,17 +72,17 @@ function FindRecursive(root, value, comparator) {
         return null;
     if (comparator(root.data, value) === 0)
         return root;
-    let result = FindRecursive(root.left, value, comparator);
+    var result = FindRecursive(root.left, value, comparator);
     if (result)
         return result;
     return FindRecursive(root.right, value, comparator);
 }
 exports.FindRecursive = FindRecursive;
 function FindUsingLevelOrder(root, value, comparator) {
-    const queue = [];
+    var queue = [];
     queue.push(root);
     while (queue.length > 0) {
-        let first = queue.splice(0, 1)[0];
+        var first = queue.splice(0, 1)[0];
         if (comparator(first.data, value) === 0)
             return first;
         if (first.left)
@@ -103,11 +103,11 @@ exports.FindSizeRecursive = FindSizeRecursive;
 function FindSizeIterative(root) {
     if (!root)
         return 0;
-    let result = 0;
-    let queue = [];
+    var result = 0;
+    var queue = [];
     queue.push(root);
     while (queue.length > 0) {
-        let node = queue.splice(0, 1)[0];
+        var node = queue.splice(0, 1)[0];
         result += 1;
         if (node.left)
             queue.push(node.left);

@@ -22,6 +22,20 @@ export interface ITraverser {
     <T>(data: T): void;
 }
 
+declare global {
+    interface Array<T> {
+        enqueue(data: T): void;
+        dequeue(): T;
+    }
+}
+
+Array.prototype["enqueue"] = function(data:any):void {
+    this.push(data);
+}
+Array.prototype["dequeue"] = function(): any {
+    return this.splice(0, 1)[0];
+}
+
 /**
  * Tree preorder traversal using recursive
  * @param root
@@ -44,7 +58,7 @@ export function PreorderTraversalRecursive<T>(root: BinaryTreeNode<T>, traverser
 export function PreorderTraversalIterative<T>(root: BinaryTreeNode<T>,traverser: ITraverser ): void {
     if (!root)
         return;
-    const stack: Array<BinaryTreeNode<T>> = [];
+    const stack = [];
     stack.push(root);
 
     while (stack.length > 0) {
@@ -68,11 +82,11 @@ export function InorderTraversalIterative<T>(root: BinaryTreeNode<T>, traverser:
     if (!root)
         return;
 
-    const stack = [];
     const state = {
         location: 1,
         node: root
     };
+    const stack:Array<typeof state> = [];
     stack.push(state);
 
     while (stack.length > 0) {
@@ -105,11 +119,11 @@ export function PostorderTraversalRecursive<T>(root: BinaryTreeNode<T>, traverse
 }
 
 export function PostorderTraversalIterative<T>(root: BinaryTreeNode<T>, traverser: ITraverser) {
-    const stack = [];
     const item = {
         location: 1,
         root: root
     };
+    const stack:Array<typeof item> = [];
     stack.push(item);
 
     while (stack.length > 0) {
@@ -135,17 +149,17 @@ export function PostorderTraversalIterative<T>(root: BinaryTreeNode<T>, traverse
 export function LevelOrderTraversal<T>(root: BinaryTreeNode<T>, traverser: ITraverser) {
     if (!root)
         return;
-    const queue: Array<BinaryTreeNode<T>> = [];
-    queue.push(root);
+    const queue:Array<BinaryTreeNode<T>>  = [];
+    queue.enqueue(root);
 
     while (queue.length > 0) {
-        const node = queue.splice(0, 1)[0];
+        const node = queue.dequeue(); 
 
         traverser(node.data);
         if (node.left)
-            queue.push(node.left);
+            queue.enqueue(node.left);
         if (node.right)
-            queue.push(node.right);
+            queue.enqueue(node.right);
     }
 }
 
@@ -158,18 +172,18 @@ export function InsertUsingLevelOrder<T>(root: BinaryTreeNode<T>, data: T) {
     }
 
     let queue: Array<BinaryTreeNode<T>> = [];
-    queue.push(root);
+    queue.enqueue(root);
     while (queue.length > 0) {
-        let node = queue.splice(0, 1)[0];
+        let node = queue.dequeue();
         if (node.left)
-            queue.push(node.left);
+            queue.enqueue(node.left);
         else {
             node.left = newNode;
             return root;
         }
 
         if (node.right)
-            queue.push(node.right);
+            queue.enqueue(node.right);
         else {
             node.right = newNode;
             return root;
@@ -184,14 +198,14 @@ export function LevelOrderTraversalInReverse<T>(root: BinaryTreeNode<T>, travers
 
     let stack: Array<BinaryTreeNode<T>> = [];
     let queue: Array<BinaryTreeNode<T>> = [];
-    queue.push(root);
+    queue.enqueue(root);
 
     while (queue.length > 0) {
-        let node = queue.splice(0, 1)[0];
+        let node = queue.dequeue();
         stack.push(node);
 
-        if (node.right) queue.push(node.right);
-        if (node.left) queue.push(node.left);
+        if (node.right) queue.enqueue(node.right);
+        if (node.left) queue.enqueue(node.left);
     }
 
     while (stack.length > 0) {
