@@ -148,3 +148,54 @@ export function LevelOrderTraversal<T>(root: BinaryTreeNode<T>, traverser: ITrav
             queue.push(node.right);
     }
 }
+
+
+export function InsertUsingLevelOrder<T>(root: BinaryTreeNode<T>, data: T) {
+    let newNode = new BinaryTreeNode(data);
+    if (!root) {
+        root = newNode;
+        return root;
+    }
+
+    let queue: Array<BinaryTreeNode<T>> = [];
+    queue.push(root);
+    while (queue.length > 0) {
+        let node = queue.splice(0, 1)[0];
+        if (node.left)
+            queue.push(node.left);
+        else {
+            node.left = newNode;
+            return root;
+        }
+
+        if (node.right)
+            queue.push(node.right);
+        else {
+            node.right = newNode;
+            return root;
+        }
+    }
+
+}
+
+export function LevelOrderTraversalInReverse<T>(root: BinaryTreeNode<T>, traverser: ITraverser) {
+    if (!root)
+        return;
+
+    let stack: Array<BinaryTreeNode<T>> = [];
+    let queue: Array<BinaryTreeNode<T>> = [];
+    queue.push(root);
+
+    while (queue.length > 0) {
+        let node = queue.splice(0, 1)[0];
+        stack.push(node);
+
+        if (node.right) queue.push(node.right);
+        if (node.left) queue.push(node.left);
+    }
+
+    while (stack.length > 0) {
+        let node = stack.pop();
+        traverser(node.data);
+    }
+}

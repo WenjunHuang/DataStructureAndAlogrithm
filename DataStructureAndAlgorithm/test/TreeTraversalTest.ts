@@ -5,8 +5,9 @@ import {
     InorderTraversalIterative,
     PostorderTraversalRecursive,
     PostorderTraversalIterative,
-    LevelOrderTraversal
-} from "../src/BinaryTreeNode";
+    LevelOrderTraversal,
+    LevelOrderTraversalInReverse
+    } from "../src/BinaryTreeNode";
 
 let root = new BinaryTreeNode<number>(1,
     new BinaryTreeNode<number>(2,
@@ -23,28 +24,26 @@ let root = new BinaryTreeNode<number>(1,
 const InorderTraversalResults = [8, 4, 9, 2, 10, 5, 11, 1, 6, 3, 7];
 const PostorderTraversalResults = [8, 9, 4, 10, 11, 5, 2, 6, 7, 3, 1];
 const LevelorderTraversalResults = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const LevelorderTraversalInReverseResults = [8, 9, 10, 11, 4, 5, 6, 7, 2, 3, 1];
 
 
-export class InorderTraversalTests extends tsUnit.TestClass {
+export class TreeTraversalTest extends tsUnit.TestClass {
     inorderTraversalRecursive_Success() {
         const queue = [];
         const traverser = (data: number): void => { queue.push(data); };
         InorderTraversalRecursive(root, traverser);
 
-        this.areCollectionsIdentical(InorderTraversalResults , queue);
+        this.areCollectionsIdentical(InorderTraversalResults, queue);
     }
 
     inorderTraversalIterative_Success() {
-        
+
         const queue = [];
         const traverser = (data: number): void => { queue.push(data); };
         InorderTraversalIterative(root, traverser);
 
         this.areCollectionsIdentical(InorderTraversalResults, queue);
     }
-}
-
-export class PostorderTraversalTests extends tsUnit.TestClass {
     postorderTraversalRecursive_Success() {
         const queue = [];
         const traverser = (data: number) => { queue.push(data); };
@@ -60,14 +59,20 @@ export class PostorderTraversalTests extends tsUnit.TestClass {
         PostorderTraversalIterative(root, traverser);
         this.areCollectionsIdentical(PostorderTraversalResults, queue);
     }
-}
 
-export class LevelorderTraversalTests extends tsUnit.TestClass {
     levelorderTraversal_Success() {
         const queue = [];
         const traverser = (data: number) => { queue.push(data); };
 
         LevelOrderTraversal(root, traverser);
         this.areCollectionsIdentical(LevelorderTraversalResults, queue);
+    }
+
+    levelOrderTraversalInReverse_Succes() {
+        const queue = [];
+        const traverser = (data: number) => { queue.push(data); }
+
+        LevelOrderTraversalInReverse(root, traverser);
+        this.areCollectionsIdentical(LevelorderTraversalInReverseResults, queue);
     }
 }
