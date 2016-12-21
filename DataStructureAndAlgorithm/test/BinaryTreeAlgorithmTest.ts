@@ -1,5 +1,6 @@
 ﻿import { BinaryTreeNode } from "../src/BinaryTreeNode";
 import { FindMaxRecursive, FindMaxIterative, FindMaxUsingLevelOrder, FindRecursive, FindUsingLevelOrder, FindSizeRecursive, FindSizeIterative } from "../src/BinaryTreeAlgorithm";
+import * as test from "../src/BinaryTreeAlgorithm";
 import * as tsUnit from "../node_modules/tsunit.external/tsUnit";
 let root = new BinaryTreeNode<number>(1,
     new BinaryTreeNode<number>(2,
@@ -66,6 +67,16 @@ export class BinaryTreeAlgorithmTest extends tsUnit.TestClass {
     findSizeIterative_Success() {
         let result = FindSizeIterative(root);
         this.areIdentical(11, result);
+    }
+
+    deepestNode_Success() {
+        let result = test.DeepestNode(root);
+        this.areIdentical(11, result);
+    }
+
+    numberOfLeavesInBtUsingLevelOrder_Success() {
+        let result = test.numberOfLeavesInBTUsingLevelOrder(root);
+        this.areIdentical(6, result);
     }
 }
 

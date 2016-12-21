@@ -37,11 +37,13 @@
     <TypeScriptCompile Include="src\BinaryTreeNode.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="src\trees\problem-15.ts" />
     <TypeScriptCompile Include="test\BinaryTreeAlgorithmTest.ts" />
     <TypeScriptCompile Include="test\TreeTraversalTest.ts" />
     <TypeScriptCompile Include="test\TestSuits.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\trees\" />
     <Folder Include="test\" />
     <Folder Include="src\" />
   </ItemGroup>
