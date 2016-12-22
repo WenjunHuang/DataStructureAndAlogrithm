@@ -1,6 +1,23 @@
-﻿export class BinaryTreeNode<T> {
+﻿
+declare global {
+    interface Array<T> {
+        enqueue(data: T): void;
+        dequeue(): T;
+    }
+}
+
+Array.prototype["enqueue"] = function (data: any): void {
+    this.push(data);
+}
+Array.prototype["dequeue"] = function (): any {
+    return this.splice(0, 1)[0];
+}
+
+export class BinaryTreeNode<T> {
+
     constructor(public data: T, public left?: BinaryTreeNode<T>, public right?: BinaryTreeNode<T>) { }
 
+    //problem-5
     insertLeft(newNode: T) {
         if (!this.left) this.left = new BinaryTreeNode(newNode);
         else {
@@ -22,19 +39,7 @@ export interface ITraverser {
     <T>(data: T): void;
 }
 
-declare global {
-    interface Array<T> {
-        enqueue(data: T): void;
-        dequeue(): T;
-    }
-}
 
-Array.prototype["enqueue"] = function(data:any):void {
-    this.push(data);
-}
-Array.prototype["dequeue"] = function(): any {
-    return this.splice(0, 1)[0];
-}
 
 /**
  * Tree preorder traversal using recursive
@@ -164,33 +169,7 @@ export function LevelOrderTraversal<T>(root: BinaryTreeNode<T>, traverser: ITrav
 }
 
 
-export function InsertUsingLevelOrder<T>(root: BinaryTreeNode<T>, data: T) {
-    let newNode = new BinaryTreeNode(data);
-    if (!root) {
-        root = newNode;
-        return root;
-    }
 
-    let queue: Array<BinaryTreeNode<T>> = [];
-    queue.enqueue(root);
-    while (queue.length > 0) {
-        let node = queue.dequeue();
-        if (node.left)
-            queue.enqueue(node.left);
-        else {
-            node.left = newNode;
-            return root;
-        }
-
-        if (node.right)
-            queue.enqueue(node.right);
-        else {
-            node.right = newNode;
-            return root;
-        }
-    }
-
-}
 
 export function LevelOrderTraversalInReverse<T>(root: BinaryTreeNode<T>, traverser: ITraverser) {
     if (!root)

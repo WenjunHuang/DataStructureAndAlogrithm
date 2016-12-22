@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>5b80e482-16b4-4625-9468-21f37a812057</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\BinaryTreeNode.ts</StartupFile>
+    <StartupFile>src\trees\BinaryTreeNode.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -33,11 +33,19 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\BinaryTreeAlgorithm.ts" />
-    <TypeScriptCompile Include="src\BinaryTreeNode.ts" />
+    <TypeScriptCompile Include="src\trees\BinaryTreeAlgorithm.ts" />
+    <TypeScriptCompile Include="src\trees\BinaryTreeNode.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="src\common\arrayextension.ts" />
+    <TypeScriptCompile Include="src\common\index.d.ts" />
+    <TypeScriptCompile Include="src\trees\problem-1.ts" />
     <TypeScriptCompile Include="src\trees\problem-15.ts" />
+    <TypeScriptCompile Include="src\trees\problem-2.ts" />
+    <TypeScriptCompile Include="src\trees\problem-3.ts" />
+    <TypeScriptCompile Include="src\trees\problem-4.ts" />
+    <TypeScriptCompile Include="src\trees\problem-5.ts" />
+    <TypeScriptCompile Include="src\trees\problem-6.ts" />
     <TypeScriptCompile Include="test\BinaryTreeAlgorithmTest.ts" />
     <TypeScriptCompile Include="test\TreeTraversalTest.ts" />
     <TypeScriptCompile Include="test\TestSuits.ts" />
