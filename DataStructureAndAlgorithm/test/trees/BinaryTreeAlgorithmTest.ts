@@ -1,4 +1,4 @@
-﻿import { BinaryTreeNode } from "../src/BinaryTreeNode";
+﻿import { BinaryTreeNode } from "../../src/trees/BinaryTreeNode";
 import { FindMaxRecursive, FindMaxIterative, FindMaxUsingLevelOrder, FindRecursive, FindUsingLevelOrder, FindSizeRecursive, FindSizeIterative } from "../src/BinaryTreeAlgorithm";
 import * as test from "../src/BinaryTreeAlgorithm";
 import * as tsUnit from "../node_modules/tsunit.external/tsUnit";

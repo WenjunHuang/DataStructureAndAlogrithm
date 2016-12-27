@@ -39,21 +39,27 @@
     <Content Include="README.md" />
     <TypeScriptCompile Include="src\common\arrayextension.ts" />
     <TypeScriptCompile Include="src\common\index.d.ts" />
-    <TypeScriptCompile Include="src\trees\problem-1.ts" />
-    <TypeScriptCompile Include="src\trees\problem-15.ts" />
-    <TypeScriptCompile Include="src\trees\problem-2.ts" />
-    <TypeScriptCompile Include="src\trees\problem-3.ts" />
-    <TypeScriptCompile Include="src\trees\problem-4.ts" />
-    <TypeScriptCompile Include="src\trees\problem-5.ts" />
-    <TypeScriptCompile Include="src\trees\problem-6.ts" />
-    <TypeScriptCompile Include="test\BinaryTreeAlgorithmTest.ts" />
+    <TypeScriptCompile Include="src\trees\problem_1.ts" />
+    <TypeScriptCompile Include="src\trees\problem_15.ts" />
+    <TypeScriptCompile Include="src\trees\problem_2.ts" />
+    <TypeScriptCompile Include="src\trees\problem_3.ts" />
+    <TypeScriptCompile Include="src\trees\problem_4.ts" />
+    <TypeScriptCompile Include="src\trees\problem_5.ts" />
+    <TypeScriptCompile Include="src\trees\problem_6.ts" />
+    <TypeScriptCompile Include="src\trees\problem_7.ts" />
+    <TypeScriptCompile Include="src\trees\problem_8.ts" />
+    <TypeScriptCompile Include="src\trees\problem_9.ts" />
+    <TypeScriptCompile Include="test\trees\BinaryTreeAlgorithmTest.ts" />
+    <TypeScriptCompile Include="test\trees\problem_1_test.ts" />
     <TypeScriptCompile Include="test\TreeTraversalTest.ts" />
     <TypeScriptCompile Include="test\TestSuits.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\common\" />
     <Folder Include="src\trees\" />
     <Folder Include="test\" />
     <Folder Include="src\" />
+    <Folder Include="test\trees\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

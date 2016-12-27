@@ -171,24 +171,3 @@ export function LevelOrderTraversal<T>(root: BinaryTreeNode<T>, traverser: ITrav
 
 
 
-export function LevelOrderTraversalInReverse<T>(root: BinaryTreeNode<T>, traverser: ITraverser) {
-    if (!root)
-        return;
-
-    let stack: Array<BinaryTreeNode<T>> = [];
-    let queue: Array<BinaryTreeNode<T>> = [];
-    queue.enqueue(root);
-
-    while (queue.length > 0) {
-        let node = queue.dequeue();
-        stack.push(node);
-
-        if (node.right) queue.enqueue(node.right);
-        if (node.left) queue.enqueue(node.left);
-    }
-
-    while (stack.length > 0) {
-        let node = stack.pop();
-        traverser(node.data);
-    }
-}
